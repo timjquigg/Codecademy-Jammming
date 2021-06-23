@@ -1,5 +1,5 @@
 const clientId = '53da5065eae84162882f5470b3e764c3';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'http://plastic-stream.surge.sh';
 let accessToken;
 
 const Spotify = {
@@ -46,6 +46,37 @@ const Spotify = {
             }));
         });
     },
-};
+
+    savePlaylist(name, trackUris) {
+        if(!name || !trackUris) {
+            return;
+        }
+        
+        const accessToken = Spotify.getAccessToken();
+        const headers = { Authorization : `Bearer ${accessToken}`};
+        let userId;
+
+        return fetch('https://api.spotify.com/v1/me', {headers: headers }
+            ).then(response => {
+                return response.json();
+            }).then(jsonResponse => {
+                userId = jsonResponse.id;
+                return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+                    headers: headers,
+                    method: 'POST',
+                    body: JSON.stringify({ name: name })
+                }).then(response => {
+                    return response.json();
+                }).then(jsonResponse => {
+                    const playlistId = jsonResponse.id;
+                    return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+                        headers: headers,
+                        method: 'POST',
+                        body: JSON.stringify({ uris: trackUris })
+                    })
+                })
+            })
+    }
+}
 
 export default Spotify;
