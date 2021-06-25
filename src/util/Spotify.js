@@ -1,6 +1,6 @@
 const clientId = '53da5065eae84162882f5470b3e764c3';
-//const redirectUri = 'http://plastic-stream.surge.sh';
-const redirectUri = 'http://localhost:3000/'
+const redirectUri = 'http://plastic-stream.surge.sh';
+//const redirectUri = 'http://localhost:3000/'
 let accessToken;
 
 const Spotify = {
