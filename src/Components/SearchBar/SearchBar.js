@@ -25,8 +25,8 @@ class SearchBar extends React.Component {
     handleTermChange(event) {
         this.setState({
             term: event.target.value,
-            hasSearched: false});
-        this.setState({searchOffset: 0});
+            hasSearched: false,
+            searchOffset: 0});
     }
 
     displayNavigation() {
