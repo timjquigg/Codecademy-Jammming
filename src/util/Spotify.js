@@ -1,5 +1,6 @@
 const clientId = '53da5065eae84162882f5470b3e764c3';
-const redirectUri = 'http://plastic-stream.surge.sh';
+//const redirectUri = 'http://plastic-stream.surge.sh';
+const redirectUri = 'http://localhost:3000/'
 let accessToken;
 
 const Spotify = {
@@ -25,9 +26,9 @@ const Spotify = {
         }
     },
 
-    search(term) {
+    search(term, offset) {
         const accessToken = Spotify.getAccessToken();
-        return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
+        return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}&offset=${offset}`, {
             headers: { 
                 Authorization: `Bearer ${accessToken}`
             }
