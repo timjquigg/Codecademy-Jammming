@@ -1,5 +1,5 @@
-const clientId = '53da5065eae84162882f5470b3e764c3';
-const redirectUri = 'http://plastic-stream.surge.sh';
+// const clientId = [environment variable];
+// const redirectUri = [environment variable];
 //const redirectUri = 'http://localhost:3000/'
 let accessToken;
 
